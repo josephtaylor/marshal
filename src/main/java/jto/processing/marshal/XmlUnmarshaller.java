@@ -12,16 +12,6 @@ public class XmlUnmarshaller implements Unmarshaller {
     private static final String END_TAG = "-->";
 
     @Override
-    public Object unmarshal(String marshaledObject) {
-        return unmarshal(marshaledObject, objectClass(marshaledObject));
-    }
-
-    @Override
-    public <T> T unmarshal(String marshaledObject, Class<T> type) {
-        return JAXB.unmarshal(new StringReader(marshaledObject), type);
-    }
-
-    @Override
     public DataFormat dataFormat() {
         return DataFormat.XML;
     }
@@ -38,5 +28,15 @@ public class XmlUnmarshaller implements Unmarshaller {
         } catch (ClassNotFoundException e) {
             throw new RuntimeException("Error unmarshalling.", e);
         }
+    }
+
+    @Override
+    public Object unmarshal(String marshaledObject) {
+        return unmarshal(marshaledObject, objectClass(marshaledObject));
+    }
+
+    @Override
+    public <T> T unmarshal(String marshaledObject, Class<T> type) {
+        return JAXB.unmarshal(new StringReader(marshaledObject), type);
     }
 }

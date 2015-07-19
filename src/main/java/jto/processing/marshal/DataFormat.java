@@ -41,6 +41,7 @@ public enum DataFormat {
 
     /**
      * Returns the extension.
+     *
      * @return the extension
      */
     public String extension() {

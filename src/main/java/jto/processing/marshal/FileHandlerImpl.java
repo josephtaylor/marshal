@@ -13,6 +13,24 @@ import java.nio.file.Paths;
  */
 public class FileHandlerImpl implements FileHandler {
     @Override
+    public String readFile(String filename) {
+        try {
+            return new String(Files.readAllBytes(Paths.get(filename)), Charsets.UTF_8);
+        } catch (IOException e) {
+            throw new RuntimeException(String.format("Unable to load %s: %s", filename, e.getMessage()), e);
+        }
+    }
+
+    @Override
+    public String readFile(File file) {
+        try {
+            return new String(Files.readAllBytes(Paths.get(file.getAbsolutePath())), Charsets.UTF_8);
+        } catch (IOException e) {
+            throw new RuntimeException(String.format("Unable to load %s: %s", file.getName(), e.getMessage()), e);
+        }
+    }
+
+    @Override
     public void saveFile(String filename, String content) {
         try {
             Files.createDirectories(Paths.get(filename).getParent());
@@ -28,24 +46,6 @@ public class FileHandlerImpl implements FileHandler {
             new FileWriter(file).write(content);
         } catch (IOException e) {
             throw new RuntimeException(String.format("Unable to save %s: %s", file.getName(), e.getMessage()), e);
-        }
-    }
-
-    @Override
-    public String readFile(String filename) {
-        try {
-            return new String(Files.readAllBytes(Paths.get(filename)), Charsets.UTF_8);
-        } catch (IOException e) {
-            throw new RuntimeException(String.format("Unable to load %s: %s", filename, e.getMessage()), e);
-        }
-    }
-
-    @Override
-    public String readFile(File file) {
-        try {
-            return new String(Files.readAllBytes(Paths.get(file.getAbsolutePath())), Charsets.UTF_8);
-        } catch (IOException e) {
-            throw new RuntimeException(String.format("Unable to load %s: %s", file.getName(), e.getMessage()), e);
         }
     }
 }

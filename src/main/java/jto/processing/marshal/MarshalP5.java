@@ -22,29 +22,6 @@ public class MarshalP5 implements Marshal {
         fileHandler = new FileHandlerImpl();
     }
 
-    private DataFormat toFormat(String filename) {
-        String[] pieces = filename.split(".");
-        if (pieces.length <= 1) {
-            return null;
-        }
-        return DataFormat.forExtension(pieces[1]);
-    }
-
-    @Override
-    public void save(Object obj, File file) {
-        save(obj, file, toFormat(file.getName()));
-    }
-
-    @Override
-    public void save(Object obj, String filename, DataFormat dataFormat) {
-        fileHandler.saveFile(parent.dataPath(filename), marshal(obj, dataFormat));
-    }
-
-    @Override
-    public void save(Object obj, File file, DataFormat dataFormat) {
-        fileHandler.saveFile(file, marshal(obj, dataFormat));
-    }
-
     @Override
     public Object load(File file) {
         return load(file, toFormat(file.getName()));
@@ -71,18 +48,36 @@ public class MarshalP5 implements Marshal {
     }
 
     @Override
-    public Object unmarshal(String marshaledObject, DataFormat dataFormat) {
-        return unmarshallers.forDataFormat(dataFormat).unmarshal(marshaledObject);
-    }
-
-    @Override
-    public <T> T unmarshal(String marshaledObject, Class<T> type, DataFormat dataFormat) {
-        return unmarshallers.forDataFormat(dataFormat).unmarshal(marshaledObject, type);
-    }
-
-    @Override
     public String marshal(Object obj, DataFormat dataFormat) {
         return marshallers.forDataFormat(dataFormat).marshal(obj);
+    }
+
+    @Override
+    public void save(Object obj, File file) {
+        save(obj, file, toFormat(file.getName()));
+    }
+
+    @Override
+    public void save(Object obj, String filename, DataFormat dataFormat) {
+        fileHandler.saveFile(parent.dataPath(filename), marshal(obj, dataFormat));
+    }
+
+    @Override
+    public void save(Object obj, File file, DataFormat dataFormat) {
+        fileHandler.saveFile(file, marshal(obj, dataFormat));
+    }
+
+    private DataFormat toFormat(String filename) {
+        if (!filename.contains(".")) {
+            throw new RuntimeException("Unable to determine file type.");
+        }
+        String format = filename.substring(filename.indexOf(".") + 1);
+        return DataFormat.forExtension(format);
+    }
+
+    @Override
+    public TransformationBuilder transform(Object object) {
+        return new TransformationBuilderImpl(object, marshallers, unmarshallers, fileHandler);
     }
 
     @Override
@@ -96,7 +91,12 @@ public class MarshalP5 implements Marshal {
     }
 
     @Override
-    public TransformationBuilder transform(Object object) {
-        return new TransformationBuilderImpl(object, marshallers, unmarshallers, fileHandler);
+    public Object unmarshal(String marshaledObject, DataFormat dataFormat) {
+        return unmarshallers.forDataFormat(dataFormat).unmarshal(marshaledObject);
+    }
+
+    @Override
+    public <T> T unmarshal(String marshaledObject, Class<T> type, DataFormat dataFormat) {
+        return unmarshallers.forDataFormat(dataFormat).unmarshal(marshaledObject, type);
     }
 }

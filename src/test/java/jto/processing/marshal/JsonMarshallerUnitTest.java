@@ -11,48 +11,27 @@ public class JsonMarshallerUnitTest {
 
     @Test
     public void testMarshal() {
-        TestClass testClass = new TestClass();
-        testClass.setId(100);
-        testClass.setName("testing");
+        Thing thing = new Thing();
+        thing.setId(100);
+        thing.setName("testing");
 
         String expected = "{\"name\":\"testing\",\"id\":100}";
-        assertEquals(expected, new JsonMarshaller().marshal(testClass));
+        assertEquals(expected, new JsonMarshaller().marshal(thing));
     }
 
     @Test
     public void testMarshal_list() {
-        TestClass testClass = new TestClass();
-        testClass.setId(100);
-        testClass.setName("testing");
+        Thing thing = new Thing();
+        thing.setId(100);
+        thing.setName("testing");
 
-        TestClass other = new TestClass();
+        Thing other = new Thing();
         other.setId(120);
         other.setName("theOther");
 
-        List<TestClass> testClasses = Lists.newArrayList(testClass, other);
+        List<Thing> things = Lists.newArrayList(thing, other);
 
         String expected = "[{\"name\":\"testing\",\"id\":100},{\"name\":\"theOther\",\"id\":120}]";
-        assertEquals(expected, new JsonMarshaller().marshal(testClasses));
-    }
-
-    private static class TestClass {
-        private String name;
-        private int id;
-
-        public String getName() {
-            return name;
-        }
-
-        public void setName(String name) {
-            this.name = name;
-        }
-
-        public int getId() {
-            return id;
-        }
-
-        public void setId(int id) {
-            this.id = id;
-        }
+        assertEquals(expected, new JsonMarshaller().marshal(things));
     }
 }

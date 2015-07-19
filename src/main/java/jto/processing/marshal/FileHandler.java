@@ -8,23 +8,6 @@ import java.io.File;
  */
 public interface FileHandler {
     /**
-     * Saves the content string to the given file.
-     *
-     * @param filename the full path and file name or
-     *                 relative path to the data folder.
-     * @param content  the String content of the file to be saved.
-     */
-    void saveFile(String filename, String content);
-
-    /**
-     * Saves the content string to the given file.
-     *
-     * @param file    the file to which the content is to be saved.
-     * @param content the String content of the file to be saved.
-     */
-    void saveFile(File file, String content);
-
-    /**
      * Reads the contents of the given file to a String.
      *
      * @param filename the full path of the file or the
@@ -40,4 +23,21 @@ public interface FileHandler {
      * @return the contents of the file as a String.
      */
     String readFile(File file);
+
+    /**
+     * Saves the content string to the given file.
+     *
+     * @param filename the full path and file name or
+     *                 relative path to the data folder.
+     * @param content  the String content of the file to be saved.
+     */
+    void saveFile(String filename, String content);
+
+    /**
+     * Saves the content string to the given file.
+     *
+     * @param file    the file to which the content is to be saved.
+     * @param content the String content of the file to be saved.
+     */
+    void saveFile(File file, String content);
 }

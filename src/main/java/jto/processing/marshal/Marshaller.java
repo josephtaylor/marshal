@@ -5,6 +5,13 @@ package jto.processing.marshal;
  */
 public interface Marshaller {
     /**
+     * Returns the data format that the marshaller implementation uses.
+     *
+     * @return the data format.
+     */
+    DataFormat dataFormat();
+
+    /**
      * Returns the Object marshaled into a String representation.
      * The format of the String is determined by the {@link #dataFormat()} method.
      *
@@ -12,11 +19,4 @@ public interface Marshaller {
      * @return the marshaled String represenation of the object.
      */
     String marshal(Object object);
-
-    /**
-     * Returns the data format that the marshaller implementation uses.
-     *
-     * @return the data format.
-     */
-    DataFormat dataFormat();
 }

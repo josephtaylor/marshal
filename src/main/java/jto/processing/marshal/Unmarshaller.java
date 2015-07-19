@@ -5,12 +5,11 @@ package jto.processing.marshal;
  */
 public interface Unmarshaller {
     /**
-     * Unmarshals the given string into an object.
+     * Indicates the data format that the implemenation uses.
      *
-     * @param marshaledObject the marshaled object.
-     * @return the unmarshaled object.
+     * @return the data format.
      */
-    Object unmarshal(String marshaledObject);
+    DataFormat dataFormat();
 
     /**
      * Unmarshals the given string into an instance of class {@link T}.
@@ -23,9 +22,10 @@ public interface Unmarshaller {
     <T> T unmarshal(String marshaledObject, Class<T> type);
 
     /**
-     * Indicates the data format that the implemenation uses.
+     * Unmarshals the given string into an object.
      *
-     * @return the data format.
+     * @param marshaledObject the marshaled object.
+     * @return the unmarshaled object.
      */
-    DataFormat dataFormat();
+    Object unmarshal(String marshaledObject);
 }

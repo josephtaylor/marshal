@@ -18,12 +18,8 @@ public class JsonUnmarshaller implements Unmarshaller {
     }
 
     @Override
-    public Object unmarshal(String marshaledObject) {
-        try {
-            return objectMapper.readValue(marshaledObject, Object.class);
-        } catch (IOException e) {
-            throw new RuntimeException(String.format(ERROR, e.getMessage()), e);
-        }
+    public DataFormat dataFormat() {
+        return DataFormat.JSON;
     }
 
     @Override
@@ -36,7 +32,11 @@ public class JsonUnmarshaller implements Unmarshaller {
     }
 
     @Override
-    public DataFormat dataFormat() {
-        return DataFormat.JSON;
+    public Object unmarshal(String marshaledObject) {
+        try {
+            return objectMapper.readValue(marshaledObject, Object.class);
+        } catch (IOException e) {
+            throw new RuntimeException(String.format(ERROR, e.getMessage()), e);
+        }
     }
 }

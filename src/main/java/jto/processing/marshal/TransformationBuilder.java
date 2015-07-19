@@ -16,6 +16,21 @@ import java.io.File;
  */
 public interface TransformationBuilder {
     /**
+     * Saves the transformed object to the given file.
+     *
+     * @param filename the full path of the file or the
+     *                 relative path to the data folder.
+     */
+    void andSaveTo(String filename);
+
+    /**
+     * Saves the transformed object to the given file.
+     *
+     * @param file the file to use.
+     */
+    void andSaveTo(File file);
+
+    /**
      * If a file is being read it is unmarshaled here.
      *
      * @param dataFormat the file extension of the data format.
@@ -32,12 +47,12 @@ public interface TransformationBuilder {
     TransformationBuilder from(DataFormat dataFormat);
 
     /**
-     * marshals the object to the given format.
+     * Returns the marshaled String representation of
+     * the transformed object.
      *
-     * @param dataFormat the extension of the file format.
-     * @return this {@code TransformationBuilder}.
+     * @return the String
      */
-    TransformationBuilder to(String dataFormat);
+    String getString();
 
     /**
      * marshals the object to the given format.
@@ -48,25 +63,10 @@ public interface TransformationBuilder {
     TransformationBuilder to(DataFormat dataFormat);
 
     /**
-     * Returns the marshaled String representation of
-     * the transformed object.
+     * marshals the object to the given format.
      *
-     * @return the String
+     * @param dataFormat the extension of the file format.
+     * @return this {@code TransformationBuilder}.
      */
-    String getString();
-
-    /**
-     * Saves the transformed object to the given file.
-     *
-     * @param filename the full path of the file or the
-     *                 relative path to the data folder.
-     */
-    void andSaveTo(String filename);
-
-    /**
-     * Saves the transformed object to the given file.
-     *
-     * @param file the file to use.
-     */
-    void andSaveTo(File file);
+    TransformationBuilder to(String dataFormat);
 }

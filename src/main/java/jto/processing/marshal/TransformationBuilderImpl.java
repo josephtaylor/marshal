@@ -51,6 +51,14 @@ public class TransformationBuilderImpl implements TransformationBuilder {
         this.fileHandler = fileHandler;
     }
 
+    public void andSaveTo(String filename) {
+        fileHandler.saveFile(filename, transformed);
+    }
+
+    public void andSaveTo(File file) {
+        fileHandler.saveFile(file, transformed);
+    }
+
     public TransformationBuilder from(String dataFormat) {
         return from(DataFormat.forExtension(dataFormat));
     }
@@ -62,8 +70,8 @@ public class TransformationBuilderImpl implements TransformationBuilder {
         return this;
     }
 
-    public TransformationBuilder to(String dataFormat) {
-        return to(DataFormat.forExtension(dataFormat));
+    public String getString() {
+        return transformed;
     }
 
     public TransformationBuilder to(DataFormat dataFormat) {
@@ -74,15 +82,7 @@ public class TransformationBuilderImpl implements TransformationBuilder {
         return this;
     }
 
-    public String getString() {
-        return transformed;
-    }
-
-    public void andSaveTo(String filename) {
-        fileHandler.saveFile(filename, transformed);
-    }
-
-    public void andSaveTo(File file) {
-        fileHandler.saveFile(file, transformed);
+    public TransformationBuilder to(String dataFormat) {
+        return to(DataFormat.forExtension(dataFormat));
     }
 }
