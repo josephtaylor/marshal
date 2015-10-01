@@ -12,7 +12,7 @@ public class FileHandlerImplUnitTest {
 
     @Test
     public void testSaveAndRead() {
-        String filename = String.valueOf((int) (Math.random() * Integer.MAX_VALUE)) + ".json";
+        String filename = "/tmp/" + String.valueOf((int) (Math.random() * Integer.MAX_VALUE)) + ".json";
         String content = "{\"test\"}";
 
         try {

@@ -10,55 +10,53 @@ import processing.core.PApplet;
  */
 public class ProcessingTest extends PApplet {
 
-    private static final long serialVersionUID = 1L;
-    private Marshal marshal;
+	private static class Thing {
+		private String name;
+		private List<Integer> data;
 
-    public static void main(String[] args) {
-        PApplet.main(ProcessingTest.class.getName());
-    }
+		public List<Integer> getData() {
+			return data;
+		}
 
-    @Override
-    public void setup() {
-        marshal = new Marshal(this);
+		public String getName() {
+			return name;
+		}
 
-        Thing thing = new Thing();
-        thing.setName("testThing");
-        thing.setData(Arrays.asList(1, 2, 3, 4));
+		public void setData(List<Integer> data) {
+			this.data = data;
+		}
 
+		public void setName(String name) {
+			this.name = name;
+		}
+	}
+	private static final long serialVersionUID = 1L;
+	private Marshal marshal;
 
-        //println(marshal.marshal(thing, DataFormat.JSON));
+	public static void main(String[] args) {
+		PApplet.main(ProcessingTest.class.getName());
+	}
 
-        String xmlMarshalled = marshal.marshal(thing, DataFormat.XML);
-        Object test = marshal.unmarshal(xmlMarshalled, DataFormat.XML);
-        Thing output = marshal.unmarshal(xmlMarshalled, Thing.class, DataFormat.XML);
-        println(output.getName());
-        println(output.getData());
+	@Override
+	public void setup() {
+		marshal = new Marshal(this);
 
-        //println(marshal.transform(thing).to(DataFormat.XML).getString());
+		Thing thing = new Thing();
+		thing.setName("testThing");
+		thing.setData(Arrays.asList(1, 2, 3, 4));
 
-        marshal.save(thing, "test.xml", DataFormat.XML);
+		//println(marshal.marshal(thing, DataFormat.JSON));
 
-        println(marshal.transformFile("test.xml").from("xml").to("json").getString());
-    }
+		String xmlMarshalled = marshal.marshal(thing, DataFormat.XML);
+		Object test = marshal.unmarshal(xmlMarshalled, DataFormat.XML);
+		Thing output = marshal.unmarshal(xmlMarshalled, Thing.class, DataFormat.XML);
+		println(output.getName());
+		println(output.getData());
 
-    private static class Thing {
-        private String name;
-        private List<Integer> data;
+		//println(marshal.transform(thing).to(DataFormat.XML).getString());
 
-        public String getName() {
-            return name;
-        }
+		marshal.save(thing, "test.xml", DataFormat.XML);
 
-        public void setName(String name) {
-            this.name = name;
-        }
-
-        public List<Integer> getData() {
-            return data;
-        }
-
-        public void setData(List<Integer> data) {
-            this.data = data;
-        }
-    }
+		println(marshal.transformFile("test.xml").from("xml").to("json").getString());
+	}
 }

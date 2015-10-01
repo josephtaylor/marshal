@@ -8,23 +8,23 @@ import com.fasterxml.jackson.databind.ObjectMapper;
  */
 public class JsonMarshaller implements Marshaller {
 
-    private final ObjectMapper objectMapper;
+	private final ObjectMapper objectMapper;
 
-    public JsonMarshaller() {
-        objectMapper = new ObjectMapper();
-    }
+	public JsonMarshaller() {
+		objectMapper = new ObjectMapper();
+	}
 
-    @Override
-    public DataFormat dataFormat() {
-        return DataFormat.JSON;
-    }
+	@Override
+	public DataFormat dataFormat() {
+		return DataFormat.JSON;
+	}
 
-    @Override
-    public String marshal(Object object) {
-        try {
-            return objectMapper.writeValueAsString(object);
-        } catch (JsonProcessingException e) {
-            throw new RuntimeException(String.format("Marshalling failed. %s", e.getMessage()));
-        }
-    }
+	@Override
+	public String marshal(Object object) {
+		try {
+			return objectMapper.writeValueAsString(object);
+		} catch (JsonProcessingException e) {
+			throw new RuntimeException(String.format("Marshalling failed. %s", e.getMessage()));
+		}
+	}
 }

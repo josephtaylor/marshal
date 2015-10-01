@@ -51,18 +51,22 @@ public class TransformationBuilderImpl implements TransformationBuilder {
 		this.fileHandler = fileHandler;
 	}
 
+	@Override
 	public void andSaveTo(String filename) {
 		fileHandler.saveFile(filename, transformed);
 	}
 
+	@Override
 	public void andSaveTo(File file) {
 		fileHandler.saveFile(file, transformed);
 	}
 
+	@Override
 	public TransformationBuilder from(String dataFormat) {
 		return from(DataFormat.forExtension(dataFormat));
 	}
 
+	@Override
 	public TransformationBuilder from(DataFormat dataFormat) {
 		if (!OBJECT.equals(filename)) {
 			initial = unmarshallers.forDataFormat(dataFormat).unmarshal(fileHandler.readFile(filename));
@@ -70,10 +74,12 @@ public class TransformationBuilderImpl implements TransformationBuilder {
 		return this;
 	}
 
+	@Override
 	public String getString() {
 		return transformed;
 	}
 
+	@Override
 	public TransformationBuilder to(DataFormat dataFormat) {
 		if (null == initial) {
 			throw new IllegalStateException("Initial object to be transformed is null.");
@@ -82,6 +88,7 @@ public class TransformationBuilderImpl implements TransformationBuilder {
 		return this;
 	}
 
+	@Override
 	public TransformationBuilder to(String dataFormat) {
 		return to(DataFormat.forExtension(dataFormat));
 	}

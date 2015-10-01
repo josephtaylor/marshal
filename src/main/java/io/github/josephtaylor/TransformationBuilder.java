@@ -6,10 +6,10 @@ import java.io.File;
  * The {@code TransformationBuilder} interface allows for
  * transforming files and objects among data formats.
  * It is designed to be used along side {@link Marshal}.
- * Usage examples:<br/><br/>
+ * Usage examples:<br><br>
  * <p>
- * {@code marshal.transform("someFile.xml").from("xml").to("json").andSaveTo("someFile.json);}
- * {@code marshal.transform(aJavaObject).to(DataFormat.JSON).getString();}<br/><br/>
+ * <code>marshal.transform("someFile.xml").from("xml").to("json").andSaveTo("someFile.json);</code>
+ * <code>marshal.transform(aJavaObject).to(DataFormat.JSON).getString();</code><br><br>
  * <p>
  * Supports the use of {@link DataFormat} objects to specify formats
  * or their corresponding extension Strings.
