@@ -1,3 +1,3 @@
-# MARSHALP5
+# MARSHAL
 
 a simple marshaling and unmarshalling library for processing
