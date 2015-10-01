@@ -1,9 +1,9 @@
-package jto.processing.marshal;
-
-import com.google.common.collect.Maps;
+package io.github.josephtaylor;
 
 import java.util.Arrays;
 import java.util.Map;
+import java.util.function.Function;
+import java.util.stream.Collectors;
 
 /**
  * Enumerated type representing the different supported data types
@@ -16,8 +16,8 @@ public enum DataFormat {
     private static final Map<String, DataFormat> lookupMap;
 
     static {
-        lookupMap = Maps.uniqueIndex(Arrays.asList(DataFormat.values()), v -> v.extension());
-    }
+		lookupMap = Arrays.stream(DataFormat.values()).collect(Collectors.toMap(DataFormat::extension, Function.identity()));
+	}
 
     private final String extension;
 

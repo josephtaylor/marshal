@@ -1,9 +1,9 @@
-package jto.processing.marshal;
+package io.github.josephtaylor;
 
-
-import org.junit.Test;
 
 import static org.junit.Assert.assertEquals;
+
+import org.junit.Test;
 
 public class XmlUnmarshallerUnitTest {
 
@@ -12,7 +12,7 @@ public class XmlUnmarshallerUnitTest {
             "    <id>100</id>\n" +
             "    <name>Taylor</name>\n" +
             "</thing>\n" +
-            "<!--__Type__jto.processing.marshal.Thing-->";
+            "<!--__Type__io.github.josephtaylor.Thing-->";
 
     @Test
     public void testDataFormat() {

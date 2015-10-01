@@ -1,10 +1,10 @@
-package jto.processing.marshal;
+package io.github.josephtaylor;
 
-import org.junit.Test;
+import static org.junit.Assert.assertEquals;
 
 import java.util.HashMap;
 
-import static org.junit.Assert.assertEquals;
+import org.junit.Test;
 
 public class JsonUnmarshallerUnitTest {
 

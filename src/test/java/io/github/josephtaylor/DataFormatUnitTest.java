@@ -1,8 +1,8 @@
-package jto.processing.marshal;
-
-import org.junit.Test;
+package io.github.josephtaylor;
 
 import static org.junit.Assert.assertEquals;
+
+import org.junit.Test;
 
 
 public class DataFormatUnitTest {

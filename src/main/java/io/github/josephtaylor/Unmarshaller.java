@@ -1,4 +1,4 @@
-package jto.processing.marshal;
+package io.github.josephtaylor;
 
 /**
  * Interface representing an object unmarshaller.

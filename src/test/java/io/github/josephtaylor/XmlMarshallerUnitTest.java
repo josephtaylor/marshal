@@ -1,7 +1,8 @@
-package jto.processing.marshal;
+package io.github.josephtaylor;
+
+import org.junit.Test;
 
 import junit.framework.TestCase;
-import org.junit.Test;
 
 /**
  * Created by joconnor on 7/19/15.
@@ -13,7 +14,7 @@ public class XmlMarshallerUnitTest extends TestCase {
             "    <id>100</id>\n" +
             "    <name>Taylor</name>\n" +
             "</thing>\n" +
-            "<!--__Type__jto.processing.marshal.Thing-->";
+            "<!--__Type__io.github.josephtaylor.Thing-->";
 
     @Test
     public void testMarshal() {

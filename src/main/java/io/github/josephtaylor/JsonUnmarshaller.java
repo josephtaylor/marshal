@@ -1,8 +1,8 @@
-package jto.processing.marshal;
-
-import com.fasterxml.jackson.databind.ObjectMapper;
+package io.github.josephtaylor;
 
 import java.io.IOException;
+
+import com.fasterxml.jackson.databind.ObjectMapper;
 
 /**
  * JSON implementation of the {@link Unmarshaller} interface.

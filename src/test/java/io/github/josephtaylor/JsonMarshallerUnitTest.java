@@ -1,11 +1,11 @@
-package jto.processing.marshal;
-
-import com.google.common.collect.Lists;
-import org.junit.Test;
-
-import java.util.List;
+package io.github.josephtaylor;
 
 import static org.junit.Assert.assertEquals;
+
+import java.util.Arrays;
+import java.util.List;
+
+import org.junit.Test;
 
 public class JsonMarshallerUnitTest {
 
@@ -29,7 +29,7 @@ public class JsonMarshallerUnitTest {
         other.setId(120);
         other.setName("theOther");
 
-        List<Thing> things = Lists.newArrayList(thing, other);
+        List<Thing> things = Arrays.asList(thing, other);
 
         String expected = "[{\"name\":\"testing\",\"id\":100},{\"name\":\"theOther\",\"id\":120}]";
         assertEquals(expected, new JsonMarshaller().marshal(things));

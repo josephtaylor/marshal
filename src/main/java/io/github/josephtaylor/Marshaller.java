@@ -1,4 +1,4 @@
-package jto.processing.marshal;
+package io.github.josephtaylor;
 
 /**
  * An interface representing an object marshaller.

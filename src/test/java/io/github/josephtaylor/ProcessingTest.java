@@ -1,16 +1,17 @@
-package jto.processing.marshal;
-
-import processing.core.PApplet;
+package io.github.josephtaylor;
 
 import java.util.Arrays;
 import java.util.List;
+
+import processing.core.PApplet;
 
 /**
  * Test PApplet for trying things out.
  */
 public class ProcessingTest extends PApplet {
 
-    private MarshalP5 marshalP5;
+    private static final long serialVersionUID = 1L;
+    private Marshal marshal;
 
     public static void main(String[] args) {
         PApplet.main(ProcessingTest.class.getName());
@@ -18,26 +19,26 @@ public class ProcessingTest extends PApplet {
 
     @Override
     public void setup() {
-        marshalP5 = new MarshalP5(this);
+        marshal = new Marshal(this);
 
         Thing thing = new Thing();
         thing.setName("testThing");
         thing.setData(Arrays.asList(1, 2, 3, 4));
 
 
-        //println(marshalP5.marshal(thing, DataFormat.JSON));
+        //println(marshal.marshal(thing, DataFormat.JSON));
 
-        String xmlMarshalled = marshalP5.marshal(thing, DataFormat.XML);
-        Object test = marshalP5.unmarshal(xmlMarshalled, DataFormat.XML);
-        Thing output = marshalP5.unmarshal(xmlMarshalled, Thing.class, DataFormat.XML);
+        String xmlMarshalled = marshal.marshal(thing, DataFormat.XML);
+        Object test = marshal.unmarshal(xmlMarshalled, DataFormat.XML);
+        Thing output = marshal.unmarshal(xmlMarshalled, Thing.class, DataFormat.XML);
         println(output.getName());
         println(output.getData());
 
-        //println(marshalP5.transform(thing).to(DataFormat.XML).getString());
+        //println(marshal.transform(thing).to(DataFormat.XML).getString());
 
-        marshalP5.save(thing, "test.xml", DataFormat.XML);
+        marshal.save(thing, "test.xml", DataFormat.XML);
 
-        println(marshalP5.transformFile("test.xml").from("xml").to("json").getString());
+        println(marshal.transformFile("test.xml").from("xml").to("json").getString());
     }
 
     private static class Thing {
