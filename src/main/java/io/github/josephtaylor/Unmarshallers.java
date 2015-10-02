@@ -20,6 +20,7 @@ public class Unmarshallers {
 		final List<Unmarshaller> unmarshallerList = new ArrayList<>();
 		unmarshallerList.add(new JsonUnmarshaller());
 		unmarshallerList.add(new XmlUnmarshaller());
+		unmarshallerList.add(new YamlUnmarshaller());
 		unmarshallers = unmarshallerList.stream().collect(Collectors.toMap(Unmarshaller::dataFormat, Function.identity()));
 	}
 }

@@ -27,6 +27,11 @@ public class XmlUnmarshallerUnitTest {
 		assertEquals(100, thing.getId());
 	}
 
+	@Test(expected = RuntimeException.class)
+	public void testUnmarshal_null() {
+		new XmlUnmarshaller().unmarshal(null);
+	}
+
 	@Test
 	public void testUnmarshal_typed() {
 		Thing thing = new XmlUnmarshaller().unmarshal(thingString, Thing.class);

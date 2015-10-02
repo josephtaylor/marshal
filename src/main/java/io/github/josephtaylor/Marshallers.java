@@ -27,7 +27,7 @@ public class Marshallers {
 		final List<Marshaller> marshallersList = new ArrayList<>();
 		marshallersList.add(new JsonMarshaller());
 		marshallersList.add(new XmlMarshaller());
+		marshallersList.add(new YamlMarshaller());
 		marshallers = marshallersList.stream().collect(Collectors.toMap(Marshaller::dataFormat, Function.identity()));
-
 	}
 }

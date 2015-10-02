@@ -11,7 +11,8 @@ import java.util.stream.Collectors;
  */
 public enum DataFormat {
 	XML("xml"),
-	JSON("json");
+	JSON("json"),
+	YAML("yaml");
 
 	private static final Map<String, DataFormat> lookupMap;
 	private final String extension;
