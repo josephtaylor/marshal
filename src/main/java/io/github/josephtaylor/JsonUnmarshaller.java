@@ -1,20 +1,19 @@
 package io.github.josephtaylor;
 
-import java.io.IOException;
+import java.util.HashMap;
 
-import com.fasterxml.jackson.databind.ObjectMapper;
+import com.google.gson.Gson;
 
 /**
- * JSON implementation of the {@link Unmarshaller} interface.
+ * Json implementation of the {@link Unmarshaller} interface.
+ * Uses google's gson library.
  */
 public class JsonUnmarshaller implements Unmarshaller {
 
-	private static final String ERROR = "Unmarshalling failed. %s";
-
-	private final ObjectMapper objectMapper;
+	private final Gson gson;
 
 	public JsonUnmarshaller() {
-		this.objectMapper = new ObjectMapper();
+		gson = new Gson();
 	}
 
 	@Override
@@ -23,20 +22,12 @@ public class JsonUnmarshaller implements Unmarshaller {
 	}
 
 	@Override
-	public <T> T unmarshal(String marshaledObject, Class<T> type) {
-		try {
-			return objectMapper.readValue(marshaledObject, type);
-		} catch (Exception e) {
-			throw new RuntimeException(String.format(ERROR, e.getMessage()), e);
-		}
+	public <T> T unmarshal(final String marshaledObject, final Class<T> type) {
+		return gson.fromJson(marshaledObject, type);
 	}
 
 	@Override
-	public Object unmarshal(String marshaledObject) {
-		try {
-			return objectMapper.readValue(marshaledObject, Object.class);
-		} catch (IOException e) {
-			throw new RuntimeException(String.format(ERROR, e.getMessage()), e);
-		}
+	public Object unmarshal(final String marshaledObject) {
+		return gson.fromJson(marshaledObject, HashMap.class);
 	}
 }

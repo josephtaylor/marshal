@@ -8,7 +8,6 @@ import java.util.List;
 import org.junit.Test;
 
 public class JsonMarshallerUnitTest {
-
 	@Test
 	public void testMarshal() {
 		Thing thing = new Thing();

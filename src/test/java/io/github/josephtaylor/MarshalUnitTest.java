@@ -23,7 +23,7 @@ public class MarshalUnitTest {
 		Object result = marshal.load(file);
 		HashMap map = (HashMap) result;
 		assertEquals("taylor", map.get("name"));
-		assertEquals(100, map.get("id"));
+		assertEquals(100.0d, map.get("id"));
 	}
 
 	@Test
@@ -32,7 +32,7 @@ public class MarshalUnitTest {
 		Object result = marshal.load(path, DataFormat.JSON);
 		HashMap map = (HashMap) result;
 		assertEquals("taylor", map.get("name"));
-		assertEquals(100, map.get("id"));
+		assertEquals(100.0d, map.get("id"));
 	}
 
 	@Test

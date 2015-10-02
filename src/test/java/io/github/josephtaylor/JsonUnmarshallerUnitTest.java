@@ -1,29 +1,31 @@
 package io.github.josephtaylor;
 
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertNull;
 
 import java.util.HashMap;
 
 import org.junit.Test;
 
 public class JsonUnmarshallerUnitTest {
-
 	@Test
 	public void testUnmarshal() {
 		Object object = new JsonUnmarshaller().unmarshal("{\"name\":\"testing\",\"id\":100}");
 		HashMap map = (HashMap) object;
 		assertEquals("testing", map.get("name"));
-		assertEquals(100, map.get("id"));
+		assertEquals(100.0d, map.get("id"));
 	}
 
-	@Test(expected = RuntimeException.class)
+	@Test
 	public void testUnmarshal_empty() {
-		new JsonUnmarshaller().unmarshal("", Thing.class);
+		Thing thing = new JsonUnmarshaller().unmarshal("", Thing.class);
+		assertNull(thing);
 	}
 
-	@Test(expected = RuntimeException.class)
+	@Test
 	public void testUnmarshal_null() {
-		new JsonUnmarshaller().unmarshal(null, Thing.class);
+		Thing thing = new JsonUnmarshaller().unmarshal(null, Thing.class);
+		assertNull(thing);
 	}
 
 	@Test

@@ -1,17 +1,17 @@
 package io.github.josephtaylor;
 
-import com.fasterxml.jackson.core.JsonProcessingException;
-import com.fasterxml.jackson.databind.ObjectMapper;
+import com.google.gson.Gson;
 
 /**
- * JSON implementation of the {@link Marshaller} interface.
+ * JSON Implementation of the {@link Marshaller} interface.
+ * Uses google's gson library.
  */
 public class JsonMarshaller implements Marshaller {
 
-	private final ObjectMapper objectMapper;
+	private final Gson gson;
 
 	public JsonMarshaller() {
-		objectMapper = new ObjectMapper();
+		gson = new Gson();
 	}
 
 	@Override
@@ -20,11 +20,7 @@ public class JsonMarshaller implements Marshaller {
 	}
 
 	@Override
-	public String marshal(Object object) {
-		try {
-			return objectMapper.writeValueAsString(object);
-		} catch (JsonProcessingException e) {
-			throw new RuntimeException(String.format("Marshalling failed. %s", e.getMessage()));
-		}
+	public String marshal(final Object object) {
+		return gson.toJson(object);
 	}
 }
