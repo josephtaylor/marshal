@@ -30,7 +30,7 @@ public class Marshal {
 	 * @param file the file to be loaded.
 	 * @return the object(s) contained in the file.
 	 */
-	Object load(File file) {
+	public Object load(File file) {
 		return load(file, toFormat(file.getName()));
 	}
 
@@ -41,7 +41,7 @@ public class Marshal {
 	 * @param dataFormat the file format of the file.
 	 * @return the object(s) contained in the file.
 	 */
-	Object load(File file, DataFormat dataFormat) {
+	public Object load(File file, DataFormat dataFormat) {
 		return unmarshal(fileHandler.readFile(file), dataFormat);
 	}
 
@@ -53,7 +53,7 @@ public class Marshal {
 	 * @param dataFormat the file format of the file.
 	 * @return the object(s) contained in the file.
 	 */
-	Object load(String filename, DataFormat dataFormat) {
+	public Object load(String filename, DataFormat dataFormat) {
 		return unmarshal(fileHandler.readFile(filename), dataFormat);
 	}
 
@@ -67,7 +67,7 @@ public class Marshal {
 	 * @param <T>      the type of the object to be loaded.
 	 * @return the object(s) contained in the file.
 	 */
-	<T> T load(String filename, Class<T> type) {
+	public <T> T load(String filename, Class<T> type) {
 		return load(filename, type, toFormat(filename));
 	}
 
@@ -81,7 +81,7 @@ public class Marshal {
 	 * @param <T>        the type of the object to be loaded.
 	 * @return the object(s) contained in the file.
 	 */
-	<T> T load(String filename, Class<T> type, DataFormat dataFormat) {
+	public <T> T load(String filename, Class<T> type, DataFormat dataFormat) {
 		return unmarshal(fileHandler.readFile(filename), type, dataFormat);
 	}
 
@@ -93,7 +93,7 @@ public class Marshal {
 	 * @param dataFormat the data format.
 	 * @return a marshaled String representation of the object.
 	 */
-	String marshal(Object obj, DataFormat dataFormat) {
+	public String marshal(Object obj, DataFormat dataFormat) {
 		return marshallers.forDataFormat(dataFormat).marshal(obj);
 	}
 
@@ -104,7 +104,7 @@ public class Marshal {
 	 * @param obj  the object to be saved.
 	 * @param file the file to which the object will be saved.
 	 */
-	void save(Object obj, File file) {
+	public void save(Object obj, File file) {
 		save(obj, file, toFormat(file.getName()));
 	}
 
@@ -115,7 +115,7 @@ public class Marshal {
 	 * @param file       the file where the object is to be saved.
 	 * @param dataFormat the file format.
 	 */
-	void save(Object obj, File file, DataFormat dataFormat) {
+	public void save(Object obj, File file, DataFormat dataFormat) {
 		fileHandler.saveFile(file, marshal(obj, dataFormat));
 	}
 
@@ -127,7 +127,7 @@ public class Marshal {
 	 *                   to the data folder.
 	 * @param dataFormat the file format.
 	 */
-	void save(Object obj, String filename, DataFormat dataFormat) {
+	public void save(Object obj, String filename, DataFormat dataFormat) {
 		fileHandler.saveFile(parent.dataPath(filename), marshal(obj, dataFormat));
 	}
 
@@ -145,7 +145,7 @@ public class Marshal {
 	 * @param object the object to be transformed.
 	 * @return the {@link TransformationBuilder} for performing a transformation.
 	 */
-	TransformationBuilder transform(Object object) {
+	public TransformationBuilder transform(Object object) {
 		return new TransformationBuilderImpl(object, marshallers, unmarshallers, fileHandler);
 	}
 
@@ -156,7 +156,7 @@ public class Marshal {
 	 *                 path relative to the data folder.
 	 * @return the {@link TransformationBuilder} for performing a transformation.
 	 */
-	TransformationBuilder transformFile(String filename) {
+	public TransformationBuilder transformFile(String filename) {
 		return new TransformationBuilderImpl(parent.dataPath(filename), marshallers, unmarshallers, fileHandler);
 	}
 
@@ -166,7 +166,7 @@ public class Marshal {
 	 * @param file the file to be transformed.
 	 * @return the {@link TransformationBuilder} for performing a transformation.
 	 */
-	TransformationBuilder transformFile(File file) {
+	public TransformationBuilder transformFile(File file) {
 		return new TransformationBuilderImpl(file, marshallers, unmarshallers, fileHandler);
 	}
 
@@ -177,7 +177,7 @@ public class Marshal {
 	 * @param dataFormat      the file format of the marshaled String object.
 	 * @return the unmarshaled object.
 	 */
-	Object unmarshal(String marshaledObject, DataFormat dataFormat) {
+	public Object unmarshal(String marshaledObject, DataFormat dataFormat) {
 		return unmarshallers.forDataFormat(dataFormat).unmarshal(marshaledObject);
 	}
 
@@ -190,7 +190,7 @@ public class Marshal {
 	 * @param <T>             the type of the marshaled object
 	 * @return the unmarshaled object.
 	 */
-	<T> T unmarshal(String marshaledObject, Class<T> type, DataFormat dataFormat) {
+	public <T> T unmarshal(String marshaledObject, Class<T> type, DataFormat dataFormat) {
 		return unmarshallers.forDataFormat(dataFormat).unmarshal(marshaledObject, type);
 	}
 }
