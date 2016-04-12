@@ -1,4 +1,4 @@
-package io.github.josephtaylor;
+package io.github.josephtaylor.marshal;
 
 import com.google.gson.Gson;
 

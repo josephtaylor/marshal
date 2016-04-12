@@ -1,4 +1,4 @@
-package io.github.josephtaylor;
+package io.github.josephtaylor.marshal;
 
 import java.io.File;
 import java.io.FileWriter;
@@ -15,7 +15,7 @@ public class FileHandlerImpl implements FileHandler {
 	private static final Charset UTF_8 = Charset.forName("UTF-8");
 
 	@Override
-	public String readFile(String filename) {
+	public String readFile(final String filename) {
 		try {
 			return new String(Files.readAllBytes(Paths.get(filename)), UTF_8);
 		} catch (IOException e) {
@@ -24,7 +24,7 @@ public class FileHandlerImpl implements FileHandler {
 	}
 
 	@Override
-	public String readFile(File file) {
+	public String readFile(final File file) {
 		try {
 			return new String(Files.readAllBytes(Paths.get(file.getAbsolutePath())), UTF_8);
 		} catch (IOException e) {
@@ -33,7 +33,7 @@ public class FileHandlerImpl implements FileHandler {
 	}
 
 	@Override
-	public void saveFile(String filename, String content) {
+	public void saveFile(final String filename, final String content) {
 		try {
 			Files.createDirectories(Paths.get(filename).getParent());
 			Files.write(Paths.get(filename), content.getBytes(UTF_8));
@@ -43,7 +43,7 @@ public class FileHandlerImpl implements FileHandler {
 	}
 
 	@Override
-	public void saveFile(File file, String content) {
+	public void saveFile(final File file, final String content) {
 		try {
 			new FileWriter(file).write(content);
 		} catch (IOException e) {

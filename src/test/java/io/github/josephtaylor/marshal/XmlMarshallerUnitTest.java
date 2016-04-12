@@ -1,20 +1,17 @@
-package io.github.josephtaylor;
+package io.github.josephtaylor.marshal;
 
 import org.junit.Test;
 
-import junit.framework.TestCase;
+import static org.junit.Assert.assertEquals;
 
-/**
- * Created by joconnor on 7/19/15.
- */
-public class XmlMarshallerUnitTest extends TestCase {
+public class XmlMarshallerUnitTest {
 
 	private static final String expected = "<?xml version=\"1.0\" encoding=\"UTF-8\" standalone=\"yes\"?>\n" +
 										   "<thing>\n" +
 										   "    <id>100</id>\n" +
 										   "    <name>Taylor</name>\n" +
 										   "</thing>\n" +
-										   "<!--__Type__io.github.josephtaylor.Thing-->";
+										   "<!--__Type__io.github.josephtaylor.marshal.Thing-->";
 
 	@Test
 	public void testMarshal() {

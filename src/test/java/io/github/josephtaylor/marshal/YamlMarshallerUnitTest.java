@@ -1,11 +1,11 @@
-package io.github.josephtaylor;
+package io.github.josephtaylor.marshal;
 
-import static org.junit.Assert.assertEquals;
+import org.junit.Test;
 
 import java.util.Arrays;
 import java.util.List;
 
-import org.junit.Test;
+import static org.junit.Assert.assertEquals;
 
 public class YamlMarshallerUnitTest {
 	@Test
@@ -14,7 +14,7 @@ public class YamlMarshallerUnitTest {
 		thing.setId(100);
 		thing.setName("testing");
 
-		String expected = "!io.github.josephtaylor.Thing\n"
+		String expected = "!io.github.josephtaylor.marshal.Thing\n"
 						  + "id: 100\n"
 						  + "name: testing\n";
 		assertEquals(expected, new YamlMarshaller().marshal(thing));
@@ -33,10 +33,10 @@ public class YamlMarshallerUnitTest {
 		List<Thing> things = Arrays.asList(thing, other);
 
 		String expected = "!java.util.Arrays$ArrayList\n"
-						  + "- !io.github.josephtaylor.Thing\n"
+						  + "- !io.github.josephtaylor.marshal.Thing\n"
 						  + "   id: 100\n"
 						  + "   name: testing\n"
-						  + "- !io.github.josephtaylor.Thing\n"
+						  + "- !io.github.josephtaylor.marshal.Thing\n"
 						  + "   id: 120\n"
 						  + "   name: theOther\n";
 		assertEquals(expected, new YamlMarshaller().marshal(things));
