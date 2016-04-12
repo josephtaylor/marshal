@@ -31,7 +31,7 @@
                 <version>2.4</version>
                 <configuration>
                     <createDependencyReducedPom>false</createDependencyReducedPom>
-                    <minimizeJar>true</minimizeJar>
+                    <!-- <minimizeJar>true</minimizeJar> -->
                     <artifactSet>
                         <excludes>
                             <exclude>org.processing*</exclude>
@@ -71,6 +71,11 @@
             <groupId>org.processing</groupId>
             <artifactId>processing-core</artifactId>
             <version>3.0</version>
+        </dependency>
+        <dependency>
+            <groupId>com.thoughtworks.xstream</groupId>
+            <artifactId>xstream</artifactId>
+            <version>1.4.9</version>
         </dependency>
         <dependency>
             <groupId>com.google.code.gson</groupId>

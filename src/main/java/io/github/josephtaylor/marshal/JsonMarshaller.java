@@ -1,6 +1,7 @@
 package io.github.josephtaylor.marshal;
 
 import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
 
 /**
  * JSON Implementation of the {@link Marshaller} interface.
@@ -11,7 +12,7 @@ public class JsonMarshaller implements Marshaller {
 	private final Gson gson;
 
 	public JsonMarshaller() {
-		gson = new Gson();
+		gson = new GsonBuilder().setPrettyPrinting().create();
 	}
 
 	@Override

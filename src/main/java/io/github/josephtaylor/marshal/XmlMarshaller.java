@@ -1,12 +1,18 @@
 package io.github.josephtaylor.marshal;
 
-import javax.xml.bind.JAXB;
-import java.io.StringWriter;
+import com.thoughtworks.xstream.XStream;
+import com.thoughtworks.xstream.io.xml.DomDriver;
 
 /**
  * XML implementation of the {@link Marshaller} interface.
  */
 public class XmlMarshaller implements Marshaller {
+
+    private final XStream xstream;
+
+    public XmlMarshaller() {
+        this.xstream = new XStream(new DomDriver());
+    }
 
     @Override
     public DataFormat dataFormat() {
@@ -15,9 +21,6 @@ public class XmlMarshaller implements Marshaller {
 
     @Override
     public String marshal(final Object object) {
-        StringWriter writer = new StringWriter();
-        JAXB.marshal(object, writer);
-        writer.append("<!--__Type__").append(object.getClass().getName()).append("-->");
-        return writer.toString();
+        return xstream.toXML(object);
     }
 }
