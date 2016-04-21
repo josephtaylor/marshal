@@ -54,7 +54,7 @@ public class Marshal {
      * @return the object(s) contained in the file.
      */
     public Object load(final String filename, final DataFormat dataFormat) {
-        return unmarshal(fileHandler.readFile(filename), dataFormat);
+        return unmarshal(fileHandler.readFile(parent.dataPath(filename)), dataFormat);
     }
 
     /**
@@ -68,7 +68,7 @@ public class Marshal {
      * @return the object(s) contained in the file.
      */
     public <T> T load(final String filename, final Class<T> type) {
-        return load(filename, type, toFormat(filename));
+        return load(parent.dataPath(filename), type, toFormat(filename));
     }
 
     /**
@@ -82,7 +82,7 @@ public class Marshal {
      * @return the object(s) contained in the file.
      */
     public <T> T load(final String filename, final Class<T> type, final DataFormat dataFormat) {
-        return unmarshal(fileHandler.readFile(filename), type, dataFormat);
+        return unmarshal(fileHandler.readFile(parent.dataPath(filename)), type, dataFormat);
     }
 
     /**
