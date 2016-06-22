@@ -31,7 +31,7 @@
                 <version>2.4</version>
                 <configuration>
                     <createDependencyReducedPom>false</createDependencyReducedPom>
-                    <minimizeJar>true</minimizeJar>
+                    <!-- <minimizeJar>true</minimizeJar> -->
                     <artifactSet>
                         <excludes>
                             <exclude>org.processing*</exclude>
