@@ -1,8 +1,8 @@
 package io.github.josephtaylor.marshal;
 
-import processing.core.PApplet;
-
 import java.io.File;
+
+import processing.core.PApplet;
 
 /**
  * Main class of the MarshalP5 library.
@@ -146,7 +146,7 @@ public class Marshal {
      * @return the {@link TransformationBuilder} for performing a transformation.
      */
     public TransformationBuilder transform(final Object object) {
-        return new TransformationBuilderImpl(object, marshallers, unmarshallers, fileHandler);
+        return new TransformationBuilderImpl(object, marshallers, unmarshallers, fileHandler, parent);
     }
 
     /**
@@ -157,7 +157,7 @@ public class Marshal {
      * @return the {@link TransformationBuilder} for performing a transformation.
      */
     public TransformationBuilder transformFile(final String filename) {
-        return new TransformationBuilderImpl(parent.dataPath(filename), marshallers, unmarshallers, fileHandler);
+        return new TransformationBuilderImpl(parent.dataPath(filename), marshallers, unmarshallers, fileHandler, parent);
     }
 
     /**
@@ -167,7 +167,7 @@ public class Marshal {
      * @return the {@link TransformationBuilder} for performing a transformation.
      */
     public TransformationBuilder transformFile(final File file) {
-        return new TransformationBuilderImpl(file, marshallers, unmarshallers, fileHandler);
+        return new TransformationBuilderImpl(file, marshallers, unmarshallers, fileHandler, parent);
     }
 
     /**

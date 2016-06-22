@@ -2,6 +2,8 @@ package io.github.josephtaylor.marshal;
 
 import java.io.File;
 
+import processing.core.PApplet;
+
 /**
  * The implementation of the {@link TransformationBuilder} interface.
  */
@@ -13,6 +15,7 @@ public class TransformationBuilderImpl implements TransformationBuilder {
     private final Unmarshallers unmarshallers;
     private final Marshallers marshallers;
     private final FileHandler fileHandler;
+    private final PApplet parent;
     private Object initial;
     private String transformed = "";
 
@@ -25,8 +28,9 @@ public class TransformationBuilderImpl implements TransformationBuilder {
      * @param fileHandler   the file handler.
      */
     public TransformationBuilderImpl(final File file, final Marshallers marshallers,
-                                     final Unmarshallers unmarshallers, final FileHandler fileHandler) {
-        this(file.getAbsolutePath(), marshallers, unmarshallers, fileHandler);
+            final Unmarshallers unmarshallers, final FileHandler fileHandler,
+            final PApplet parent) {
+        this(file.getAbsolutePath(), marshallers, unmarshallers, fileHandler, parent);
     }
 
     /**
@@ -38,7 +42,7 @@ public class TransformationBuilderImpl implements TransformationBuilder {
      * @param fileHandler   the file handler.
      */
     public TransformationBuilderImpl(final Object object, final Marshallers marshallers,
-                                     final Unmarshallers unmarshallers, final FileHandler fileHandler) {
+            final Unmarshallers unmarshallers, final FileHandler fileHandler, final PApplet parent) {
         if (object instanceof String) {
             this.filename = (String) object;
             this.initial = null;
@@ -49,11 +53,12 @@ public class TransformationBuilderImpl implements TransformationBuilder {
         this.unmarshallers = unmarshallers;
         this.marshallers = marshallers;
         this.fileHandler = fileHandler;
+        this.parent = parent;
     }
 
     @Override
     public void andSaveTo(final String filename) {
-        fileHandler.saveFile(filename, transformed);
+        fileHandler.saveFile(parent.dataPath(filename), transformed);
     }
 
     @Override
