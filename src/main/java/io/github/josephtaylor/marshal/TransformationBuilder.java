@@ -55,6 +55,14 @@ public interface TransformationBuilder {
     String getString();
 
     /**
+     * Sets the type of the object to be unmarshaled.
+     *
+     * @param type the type of the object being transformed.
+     * @return the {@code TransformationBuilder}
+     */
+    TransformationBuilder ofType(final Class<?> type);
+
+    /**
      * marshals the object to the given format.
      *
      * @param dataFormat the data format.

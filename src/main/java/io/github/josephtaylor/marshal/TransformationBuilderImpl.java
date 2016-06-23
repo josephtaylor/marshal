@@ -18,6 +18,7 @@ public class TransformationBuilderImpl implements TransformationBuilder {
     private final PApplet parent;
     private Object initial;
     private String transformed = "";
+    private Class<?> type;
 
     /**
      * Constructor for {@code TransformationBuilderImpl} objects.
@@ -74,6 +75,10 @@ public class TransformationBuilderImpl implements TransformationBuilder {
     @Override
     public TransformationBuilder from(final DataFormat dataFormat) {
         if (!OBJECT.equals(filename)) {
+            if (null != type) {
+                initial = unmarshallers.forDataFormat(dataFormat).unmarshal(fileHandler.readFile(filename), type);
+                return this;
+            }
             initial = unmarshallers.forDataFormat(dataFormat).unmarshal(fileHandler.readFile(filename));
         }
         return this;
@@ -82,6 +87,12 @@ public class TransformationBuilderImpl implements TransformationBuilder {
     @Override
     public String getString() {
         return transformed;
+    }
+
+    @Override
+    public TransformationBuilder ofType(final Class<?> type) {
+        this.type = type;
+        return this;
     }
 
     @Override
