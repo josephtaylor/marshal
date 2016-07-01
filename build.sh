@@ -14,6 +14,7 @@ cd ../..
 echo ' -- copying jar to library folder'
 mkdir target/library
 cp -v target/marshal.jar target/library/
+cp -v target/lib/*.jar target/library/
 
 echo ' -- move everything to target/marshal'
 mkdir target/marshal
