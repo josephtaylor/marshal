@@ -1,3 +1,10 @@
+/*
+  This file contains several small objects.
+  
+  These objects represent a subset of the JSON that is
+  returned from the USGS Endpoints.
+  
+*/
 class Response {
   private List<Feature> features = new ArrayList<Feature>();
   
