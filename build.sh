@@ -1,9 +1,9 @@
 #!/bin/bash
 
 echo ' -- building with maven'
-mvn clean package
+./mvnw clean package
 echo ' -- generating javadocs'
-mvn javadoc:javadoc
+./mvnw javadoc:javadoc
 
 echo ' -- moving javadocs'
 cd target/reference
@@ -26,7 +26,4 @@ cp -rv target/library target/marshal/
 
 echo ' -- generate zip file '
 cd target
-zip -rv marshal.zip marshal 
-
-
-
+zip -rv marshal.zip marshal
