@@ -1,11 +1,12 @@
 package io.github.josephtaylor.marshal;
 
-import org.junit.Test;
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.fail;
 
 import java.util.Arrays;
 import java.util.List;
 
-import static org.junit.Assert.assertEquals;
+import org.junit.Test;
 
 public class YamlMarshallerUnitTest {
 	@Test
@@ -19,6 +20,16 @@ public class YamlMarshallerUnitTest {
 						  + "name: testing\n";
 		assertEquals(expected, new YamlMarshaller().marshal(thing));
 	}
+
+    @Test
+    public void testMarshal_null() {
+        try {
+            new YamlMarshaller().marshal(null);
+            fail("An exception should have been thrown.");
+        } catch (Exception e) {
+            assertEquals("YAML Marshalling failed.", e.getMessage());
+        }
+    }
 
 	@Test
 	public void testMarshal_list() {

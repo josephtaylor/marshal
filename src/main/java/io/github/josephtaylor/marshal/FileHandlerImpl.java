@@ -1,7 +1,6 @@
 package io.github.josephtaylor.marshal;
 
 import java.io.File;
-import java.io.FileWriter;
 import java.io.IOException;
 import java.nio.charset.Charset;
 import java.nio.file.Files;
@@ -19,7 +18,8 @@ public class FileHandlerImpl implements FileHandler {
 		try {
 			return new String(Files.readAllBytes(Paths.get(filename)), UTF_8);
 		} catch (IOException e) {
-			throw new RuntimeException(String.format("Unable to load %s: %s", filename, e.getMessage()), e);
+            throw new RuntimeException(String.format("Unable to load %s: %s: %s",
+                    filename, e.getClass().getName(), e.getMessage()), e);
 		}
 	}
 
@@ -28,7 +28,8 @@ public class FileHandlerImpl implements FileHandler {
 		try {
 			return new String(Files.readAllBytes(Paths.get(file.getAbsolutePath())), UTF_8);
 		} catch (IOException e) {
-			throw new RuntimeException(String.format("Unable to load %s: %s", file.getName(), e.getMessage()), e);
+			throw new RuntimeException(String.format("Unable to load %s: %s: %s",
+                    file.getName(), e.getClass().getName(), e.getMessage()), e);
 		}
 	}
 
@@ -38,16 +39,17 @@ public class FileHandlerImpl implements FileHandler {
 			Files.createDirectories(Paths.get(filename).getParent());
 			Files.write(Paths.get(filename), content.getBytes(UTF_8));
 		} catch (IOException e) {
-			throw new RuntimeException(String.format("Unable to save %s: %s", filename, e.getMessage()), e);
+			throw new RuntimeException(String.format("Unable to save %s: %s: %s",
+                            filename, e.getClass().getName(), e.getMessage()), e);
 		}
 	}
 
 	@Override
 	public void saveFile(final File file, final String content) {
 		try {
-			new FileWriter(file).write(content);
-		} catch (IOException e) {
-			throw new RuntimeException(String.format("Unable to save %s: %s", file.getName(), e.getMessage()), e);
+            Files.write(Paths.get(file.getAbsolutePath()), content.getBytes(UTF_8));
+        } catch (IOException e) {
+			throw new RuntimeException(String.format("Unable to save %s: %s", file.getName(), e), e);
 		}
 	}
 }

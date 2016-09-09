@@ -49,8 +49,8 @@ public class TransformationBuilderImpl implements TransformationBuilder {
             this.initial = null;
         } else {
             this.filename = OBJECT;
+            this.initial = object;
         }
-        this.initial = object;
         this.unmarshallers = unmarshallers;
         this.marshallers = marshallers;
         this.fileHandler = fileHandler;

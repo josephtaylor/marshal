@@ -1,9 +1,8 @@
 package io.github.josephtaylor.marshal;
 
-import com.esotericsoftware.yamlbeans.YamlException;
-import com.esotericsoftware.yamlbeans.YamlWriter;
-
 import java.io.StringWriter;
+
+import com.esotericsoftware.yamlbeans.YamlWriter;
 
 /**
  * Yaml implementation of the {@link Marshaller} interface.
@@ -22,7 +21,7 @@ public class YamlMarshaller implements Marshaller {
             YamlWriter writer = new YamlWriter(output);
             writer.write(object);
             writer.close();
-        } catch (YamlException e) {
+        } catch (Exception e) {
             throw new RuntimeException("YAML Marshalling failed.", e);
         }
         return output.toString();

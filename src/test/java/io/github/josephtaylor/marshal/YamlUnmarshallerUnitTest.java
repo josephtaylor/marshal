@@ -1,11 +1,12 @@
 package io.github.josephtaylor.marshal;
 
-import org.junit.Test;
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertNull;
+import static org.junit.Assert.fail;
 
 import java.util.List;
 
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertNull;
+import org.junit.Test;
 
 public class YamlUnmarshallerUnitTest {
 
@@ -50,5 +51,25 @@ public class YamlUnmarshallerUnitTest {
 
         assertEquals("theOther", things.get(1).getName());
         assertEquals(120, things.get(1).getId());
+    }
+
+    @Test
+    public void testUnmarshal_exception() {
+        try {
+            new YamlUnmarshaller().unmarshal("HOORAYYYY", Integer.class);
+            fail("An exception should have been thrown.");
+        } catch (Exception e) {
+            assertEquals("YAML Umarshalling failed.", e.getMessage());
+        }
+    }
+
+    @Test
+    public void testUnmarshal_noType_exception() {
+        try {
+            new YamlUnmarshaller().unmarshal("!@#!%%^!@#$!@#%");
+            fail("An exception should have been thrown.");
+        } catch (Exception e) {
+            assertEquals("YAML Umarshalling failed.", e.getMessage());
+        }
     }
 }
