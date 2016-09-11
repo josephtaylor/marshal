@@ -88,7 +88,7 @@ Message message = marshal.unmarshal(json, Message.class, DataFormat.JSON);
 println(message.getContent());
 ```
 
-### Transforming from one format to another
+### Transforming From One Format to Another
 
 Marshal provides the `TransformationBuilder` which gives us some shorthand syntax for converting objects from one format to another.
 For example:
@@ -116,3 +116,22 @@ marshal.transformFile("message.xml")
             .andSaveTo("message.json");
 // now there's a file in the data folder named message.json with the message in it.
 ```
+
+## Building and Installing
+
+### Building
+
+To compile the library run:
+
+```
+./build.sh
+```
+
+### Installation
+
+After running the build script we have `Marshal.zip` in the `target` folder.   
+Extract the zip file in the libraries folder of your processing sketchbook.
+
+## Contributing
+
+If you want to add or fix something feel free to make an issue and pull request.
