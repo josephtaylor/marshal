@@ -1,0 +1,29 @@
+{
+  "name": "marshal",
+  "version": "0.0.1",
+  "description": "website for marshal - a processing library",
+  "main": "index.html",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/josephtaylor/marshal.git"
+  },
+  "keywords": [
+    "marshalling",
+    "processing",
+    "p5"
+  ],
+  "author": "J. Taylor O'Connor",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/josephtaylor/marshal/issues"
+  },
+  "homepage": "https://github.com/josephtaylor/marshal#readme",
+  "dependencies": {
+  },
+  "devDependencies": {
+    "node-dev-server": "0.0.1"
+  }
+}
