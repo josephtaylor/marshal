@@ -22,9 +22,6 @@
     "url": "https://github.com/josephtaylor/marshal/issues"
   },
   "homepage": "https://github.com/josephtaylor/marshal#readme",
-  "dependencies": {
-    "animate.css": "^3.5.2"
-  },
   "devDependencies": {
     "node-static": "^0.7.8"
   }
