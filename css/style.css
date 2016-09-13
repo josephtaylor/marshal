@@ -1,0 +1,77 @@
+h1, h3 {
+    font-family: 'Merriweather', serif;
+}
+
+#main-header {
+    font-size: 4em;
+    text-align: center;
+    -webkit-animation-duration: 2s;
+}
+
+@media only screen and (min-width: 768px) {
+    #main-header {
+        padding-left: 1.5em;
+        text-align: left;
+        -webkit-animation-duration: 2s;
+    }
+}
+
+p {
+    font-family: 'Inconsolata', monospace;
+    padding-left: 1em;
+    padding-right: 1em;
+    color: #707070;
+}
+
+.version {
+    font-size: 2em;
+}
+
+a {
+    color: #0066FF;
+}
+
+/* Animation Stuff */
+#description {
+    -webkit-animation-delay: 0.5s;
+}
+
+#usage {
+    -webkit-animation-delay: 0.1s;
+}
+
+#examples {
+    -webkit-animation-delay: 0.20s;
+}
+
+#documentation {
+    -webkit-animation-delay: 0.30s;
+}
+
+#source-code {
+    -webkit-animation-delay: 0.40s;
+}
+
+#platforms {
+    -webkit-animation-delay: 0.5s;
+}
+
+#usage-header {
+    -webkit-animation-delay: 0.1s;
+}
+
+#examples-header {
+    -webkit-animation-delay: 0.2s;
+}
+
+#documentation-header {
+    -webkit-animation-delay: 0.3s;
+}
+
+#source-code-header {
+    -webkit-animation-delay: 0.4s;
+}
+
+#platforms-header {
+    -webkit-animation-delay: 0.5s;
+}
